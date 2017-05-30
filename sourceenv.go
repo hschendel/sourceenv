@@ -26,6 +26,9 @@ func main() {
 	if err == nil {
 		return
 	} else {
+		if cmd.ProcessState == nil {
+			os.Exit(1)
+		}
 		if status, ok := cmd.ProcessState.Sys().(syscall.WaitStatus); ok {
 			os.Exit(status.ExitStatus())
 		} else {
